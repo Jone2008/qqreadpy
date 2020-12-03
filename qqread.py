@@ -173,8 +173,8 @@ def main():
         task_data = qqreadtask(secrets[0])
         mytask_data = qqreadmytask(secrets[0])
 
-        tz += f"========== {gettime()} =========\n"
-        tz += f"============= 📣系统通知📣 =============\n"
+        tz += f"=== {gettime()} ===\n"
+        tz += f"=== 📣系统通知📣 ===\n"
         tz += f"【用户信息】{info_data['user']['nickName']}\n"
         tz += f"【账户余额】{task_data['user']['amount']}金币\n"
         tz += f"【今日阅读】{todaytime_data}分钟\n"
