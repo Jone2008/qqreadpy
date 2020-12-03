@@ -50,15 +50,15 @@
 
 
   ```
-{"Cookie":"ywguid=123456789;ywkey=wedqwdlAWVJp9;platform=android;channel=mqqmina;mpVersion=0.30.0;qq_ver=8.4.18.4945;os_ver=Android10......}
+{"Cookie":"ywguid=123456789;ywkey=wedqwdlAWVJp9;platform=android;channel=mqqmina;mpVersion=0.30.0;qq_ver=8.4.18.4945;os_ver=Android10","aaa":"bbb",......}
   ```
 
 多账号请按`Enter`键换行隔开示例(这里给下三个账号的示例)
 
   ```
-{"Cookie":"ywguid=123456789;ywkey=******}
-{"Cookie":"ywguid=123456789;ywkey=******}
-{"Cookie":"ywguid=123456789;ywkey=******}
+{"Cookie":"ywguid=123456789;ywkey=******","aaa":"bbb",......}
+{"Cookie":"ywguid=123456789;ywkey=******","aaa":"bbb",......}
+{"Cookie":"ywguid=123456789;ywkey=******","aaa":"bbb",......}
   ```
   
 4. `QQREADTIMEURL` 参数格式为
@@ -75,7 +75,7 @@ https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&r
 https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&readTime=***&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A***%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1
   ```
   
-5. **特别注意：** 三个参数出现的顺序一定要一致
+5. **特别注意：** 三个参数出现的顺序一定要一致，且每个参数有几个账号就写几行，不要有多余空行！
 
 ### 运行方式
 
