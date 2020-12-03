@@ -1,0 +1,36 @@
+name: 企鹅读书
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/11 * * * *'
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: '运行【企鹅读书】' 
+        run: python3 qqread.py 
+        env:
+            QQREADHEADERS: ${{ secrets.QQREADHEADERS }}
+            QQREADTIMEHEADERS: ${{ secrets.QQREADTIMEHEADERS }}
+            QQREADTIMEURL: ${{ secrets.QQREADTIMEURL }}
+            NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
+            NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
+            SCKEY: ${{ secrets.SCKEY }}
+            BARK: ${{ secrets.BARK }}
+            TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+            TG_USER_ID: ${{ secrets.TG_USER_ID }}
