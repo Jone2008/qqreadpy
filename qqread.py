@@ -276,7 +276,7 @@ def start(index, secrets):
                 info = getTemplate(
                     secrets[0], f"pickPackage?readTime={i['readTime']}")
                 if info['code'] == 0:
-                    tz += f"【周时长奖励{m+1}】领取{package[0]}书券\n"
+                    tz += f"【周时长奖励{m+1}】领取{package[m]}书券\n"
         else:
             tz += "【周时长奖励】已全部领取\n"
 
