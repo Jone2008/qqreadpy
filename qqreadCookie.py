@@ -19,10 +19,10 @@ import notification
 qqreadheaders1 = '{}'
 qqreadheaders2 = '{}'
 
-# qqreadheaders参数填写，填写完注意不要上传
+# qqreadbody参数填写，填写完注意不要上传
 # 如果有其它账号，还需要将qqreadtimeheaders2填写进下面的qqreadheadersLists
-qqreadtimeheaders1 = '{}'
-qqreadtimeheaders2 = '{}'
+qqreadbodys1 = '{}'
+qqreadbodys2 = '{}'
 
 # qqreadheaders参数填写，填写完注意不要上传
 # 如果有其它账号，还需要将qqreadheaders2填写进下面的qqreadheadersLists
@@ -31,24 +31,24 @@ qqreadtimeurl2 = ""
 
 # 如为多账号，请修改下面参数
 qqreadheadersLists = [qqreadheaders1, ]
-qqreadtimeheadersLists = [qqreadtimeheaders1, ]
+qqreadbodysLists = [qqreadbodys1, ]
 qqreadtimeurlLists = [qqreadtimeurl1, ]
 
 qqreadLists = list(
-    zip(qqreadheadersLists, qqreadtimeheadersLists, qqreadtimeurlLists))
+    zip(qqreadheadersLists, qqreadbodysLists, qqreadtimeurlLists))
 
 ####################################
 # 方案2 GitHub action 自动运行    各参数读取自secrets
 
 
-if "QQREADHEADERS" and "QQREADTIMEHEADERS" and "QQREADTIMEURL" in os.environ:
+if "QQREADHEADERS" and "QQREADBODYS" and "QQREADTIMEURL" in os.environ:
     qqreadheaders = os.environ["QQREADHEADERS"].split('\n')
-    qqreadtimeheaders = os.environ["QQREADTIMEHEADERS"].split('\n')
+    qqreadbodys = os.environ["QQREADBODYS"].split('\n')
     qqreadtimeurl = os.environ["QQREADTIMEURL"].split('\n')
     qqreadLists = []
-    if len(qqreadheaders) == len(qqreadtimeheaders) and len(qqreadtimeheaders) == len(qqreadtimeurl):
+    if len(qqreadheaders) == len(qqreadbodys) and len(qqreadbodys) == len(qqreadtimeurl):
         qqreadLists = list(
-            zip(qqreadheaders, qqreadtimeheaders, qqreadtimeurl))
+            zip(qqreadheaders, qqreadbodys, qqreadtimeurl))
     else:
         print("各项Secrets数量不符，请修改！")
     
