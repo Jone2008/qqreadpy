@@ -30,7 +30,7 @@
 | 名称                 | 功能           | 属性   | 备注                            |  
 | :------------------: | :-----------: | :----: | ------------------------------ | 
 | `QQREADHEADERS`      | 主header      | 必须   | 绝大多数功能的正常使用需要此参数  | 
-| `QQREADTIMEHEADERS`  | 阅读时长header | 必须   | 上传阅读时长功能需要的参数       |  
+| `QQREADBODYS`        | 主body        | 必须   | 绝大多数功能的正常使用需要此参数  |  
 | `QQREADTIMEURL`      | 阅读时长URL    | 必须   | 上传阅读时长功能需要的URL        | 
 | `NOTIFYTYPE`         | 通知类型       | 非必须 | 详见通知类型                    |  
 | `NOTIFYCFG`          | 通知服务       | 非必须 | 详见通知服务                    | 
@@ -42,11 +42,15 @@
 
 **⚠️cookie获取方法：**
 
-1. 进入 https://m.q.qq.com/a/s/d3eacc70120b9a37e46bad408c0c4c2a  点“我的”，获取 `QQREADHEADERS` 
+1. 进入 https://m.q.qq.com/a/s/d3eacc70120b9a37e46bad408c0c4c2a 
 
-2. 进一本书阅读一会儿，然后退出，获取 `QQREADTIMEHEADERS` 和 `QQREADTIMEURL` 
+2. 进一本书阅读一会儿，然后退出，获取`QQREADHEADERS` `QQREADBODYS` 和 `QQREADTIMEURL` 
 
-3. `QQREADHEADERS` `QQREADTIMEHEADERS` 两个参数格式为
+3. `QQREADHEADERS` 和 `QQREADTIMEURL` 匹配链接为 https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?.......
+
+   `QQREADBODYS` 匹配链接为 https://mqqapi.reader.qq.com/log/v4/mqq/track
+
+4. `QQREADHEADERS`参数格式为
 
 
   ```
@@ -60,8 +64,22 @@
 {"Cookie":"ywguid=123456789;ywkey=******","aaa":"bbb",......}
 {"Cookie":"ywguid=123456789;ywkey=******","aaa":"bbb",......}
   ```
-  
-4. `QQREADTIMEURL` 参数格式为
+
+5. `QQREADBODYS` 参数格式为
+
+```
+{"common":{"appid":***,"areaid":5,"qq_ver":"8.4.18.4945","os_ver":"Android 10","mp_ver":"0.31.0","mpos_ver":"1.21.0","brand":"***","model":"***","screenWidth":393,"screenHeight":816,"windowWidth":393,"windowHeight":762,"openid":"***","guid":***,"session":"***","scene":1023,"source":-1,"hasRedDot":"false","missions":-1,"caseID":-1},"dataList":[{"click1":"bookShelf_myshelf_myBook_C","click2":"qqauthorize_addRCS_succ_C","route":"pages/book-read/index","refer":"pages/book-shelf/index","options":{"bid":"27325720","cid":"3","from":"shelf"},"dis":1607325831391,"ext6":31,"eventID":"bookRead_show_I","type":"shown","ccid":3,"bid":"27325720","bookStatus":1,"bookPay":1,"chapterStatus":0,"ext1":{"font":18,"bg":0,"pageMode":1},"from":"bookShelf_myshelf_myBook_C_0_27325720"}]}
+```
+
+多账号请按`Enter`键换行隔开示例(这里给下三个账号的示例)
+
+  ```
+{"common":{"appid":***,"areaid":5,"qq_ver":"8.4.18.4945","os_ver":"Android 10","mp_ver":"0.31.0","mpos_ver":"1.21.0","brand":"***","model":"***","screenWidth":393,"screenHeight":816,"windowWidth":393,"windowHeight":762,"openid":"***","guid":***,"session":"***","scene":1023,"source":-1,"hasRedDot":"false","missions":-1,"caseID":-1},"dataList":[{"click1":"bookShelf_myshelf_myBook_C","click2":"qqauthorize_addRCS_succ_C","route":"pages/book-read/index","refer":"pages/book-shelf/index","options":{"bid":"27325720","cid":"3","from":"shelf"},"dis":1607325831391,"ext6":31,"eventID":"bookRead_show_I","type":"shown","ccid":3,"bid":"27325720","bookStatus":1,"bookPay":1,"chapterStatus":0,"ext1":{"font":18,"bg":0,"pageMode":1},"from":"bookShelf_myshelf_myBook_C_0_27325720"}]}
+{"common":{"appid":***,"areaid":5,"qq_ver":"8.4.18.4945","os_ver":"Android 10","mp_ver":"0.31.0","mpos_ver":"1.21.0","brand":"***","model":"***","screenWidth":393,"screenHeight":816,"windowWidth":393,"windowHeight":762,"openid":"***","guid":***,"session":"***","scene":1023,"source":-1,"hasRedDot":"false","missions":-1,"caseID":-1},"dataList":[{"click1":"bookShelf_myshelf_myBook_C","click2":"qqauthorize_addRCS_succ_C","route":"pages/book-read/index","refer":"pages/book-shelf/index","options":{"bid":"27325720","cid":"3","from":"shelf"},"dis":1607325831391,"ext6":31,"eventID":"bookRead_show_I","type":"shown","ccid":3,"bid":"27325720","bookStatus":1,"bookPay":1,"chapterStatus":0,"ext1":{"font":18,"bg":0,"pageMode":1},"from":"bookShelf_myshelf_myBook_C_0_27325720"}]}
+{"common":{"appid":***,"areaid":5,"qq_ver":"8.4.18.4945","os_ver":"Android 10","mp_ver":"0.31.0","mpos_ver":"1.21.0","brand":"***","model":"***","screenWidth":393,"screenHeight":816,"windowWidth":393,"windowHeight":762,"openid":"***","guid":***,"session":"***","scene":1023,"source":-1,"hasRedDot":"false","missions":-1,"caseID":-1},"dataList":[{"click1":"bookShelf_myshelf_myBook_C","click2":"qqauthorize_addRCS_succ_C","route":"pages/book-read/index","refer":"pages/book-shelf/index","options":{"bid":"27325720","cid":"3","from":"shelf"},"dis":1607325831391,"ext6":31,"eventID":"bookRead_show_I","type":"shown","ccid":3,"bid":"27325720","bookStatus":1,"bookPay":1,"chapterStatus":0,"ext1":{"font":18,"bg":0,"pageMode":1},"from":"bookShelf_myshelf_myBook_C_0_27325720"}]}
+  ```
+
+6. `QQREADTIMEURL` 参数格式为
 
 ```
 https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&readTime=***&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A***%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1
@@ -75,7 +93,7 @@ https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&r
 https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&readTime=***&read_type=0&conttype=1&read_status=0&chapter_info=%5B%7B%221%22%3A%7B%22readTime%22%3A***%2C%22pay_status%22%3A0%7D%7D%5D&sp=-1
   ```
   
-5. **特别注意：** 三个参数出现的顺序一定要一致，且每个参数有几个账号就写几行，不要有多余空行！
+7. **特别注意：** 三个参数中每个账号信息出现的顺序一定要一致，且每个参数有几个账号就写几行，不要有多余空行！
 
 ### 运行方式
 
@@ -83,7 +101,7 @@ https://mqqapi.reader.qq.com/mqq/addReadTimeWithBid?scene=***&refer=-1&bid=***&r
 
 本地执行、云服务器、云函数等等
 
-下载到本地，填写 `qqreadCookie.py` 中的 `qqreadheaders` `qqreadtimeheaders` `qqreadtimeurl` 等信息  
+下载到本地，填写 `qqreadCookie.py` 中的 `qqreadheaders` `qqreadbodys` `qqreadtimeurl` 等信息  
 云函数请善用搜索以及对应官方文档
 
 ##### 2、方案二
