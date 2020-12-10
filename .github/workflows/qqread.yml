@@ -3,9 +3,11 @@ name: 企鹅读书
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/16 * * * *'
+    - cron: '*/13 * * * *'
   watch:
     types: [started]
+env:
+  TZ: Asia/Shanghai
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,6 +32,7 @@ jobs:
             QQREADTIMEURL: ${{ secrets.QQREADTIMEURL }}
             NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
             NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
+            DRAWAMOUNT: ${{ secrets.DRAWAMOUNT }}
             SCKEY: ${{ secrets.SCKEY }}
             BARK: ${{ secrets.BARK }}
             TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
