@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020-12-11
+# @Time    : 2020-12-18
 # @Author  : water008@github
 # @File    : qqread.py
 
@@ -346,7 +346,7 @@ def start(index, secrets):
         withdrawinfo_data = qqreadwithdrawinfo(secrets[0])['createTime']
         if withdrawinfo_data < getTimestamp():
             withdrawal_data = qqreadwithdrawal(secrets[0], DRAWAMOUNT*10000)
-            sendmsg("企鹅读书提现通知", f"提现{DRAWAMOUNT}元：{withdrawal_data}")
+            sendmsg("企鹅读书提现通知", f"[{info_data['user']['nickName']}] 提现{DRAWAMOUNT}元：{withdrawal_data}")
             tz += f"【自动提现】提现{DRAWAMOUNT}元（{withdrawal_data}）\n"
 
     tz += f"【今日收益】{totalAmount(secrets[0])}金币\n"
