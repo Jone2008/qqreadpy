@@ -1,0 +1,39 @@
+name: frequently
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/4 * * * ?'
+  watch:
+    types: [started]
+env:
+  TZ: Asia/Shanghai
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: '运行【frequently】' 
+        run: python3 qqread.py 
+        env:
+            QQREADHEADERS: ${{ secrets.QQREADHEADERS }}
+            QQREADBODYS: ${{ secrets.QQREADBODYS }}
+            QQREADTIMEURL: ${{ secrets.QQREADTIMEURL }}
+            NOTIFYTYPE: ${{ secrets.NOTIFYTYPE }}
+            NOTIFYCFG: ${{ secrets.NOTIFYCFG }}
+            DRAWAMOUNT: ${{ secrets.DRAWAMOUNT }}
+            SCKEY: ${{ secrets.SCKEY }}
+            BARK: ${{ secrets.BARK }}
+            TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+            TG_USER_ID: ${{ secrets.TG_USER_ID }}
