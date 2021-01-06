@@ -93,6 +93,10 @@ def qqreadsign(headers):
     sign_data = getTemplate(headers, "red_packet/user/clock_in/page")['data']
     return sign_data
 
+def qqreadsign_new(headers):
+    """每日打卡"""
+    sign_data = getTemplate(headers, "red_packet/user/clock_in")
+    return sign_data
 
 def qqreadsign2(headers):
     """每日打卡翻倍"""
@@ -286,6 +290,7 @@ def start(index, secrets):
         if task_data['taskList'][i]['title'].find("打卡") != -1:
             sign_data = qqreadsign(secrets[0])
             if task_data['taskList'][i]['doneFlag'] == 0:
+                qqreadsign_new(secrets[0])
                 tz += f"【今日打卡】获得{sign_data['todayAmount']}金币，已连续签到{sign_data['clockInDays']}天\n"
             if sign_data['videoDoneFlag'] == 0:
                 sign2_data = qqreadsign2(secrets[0])
